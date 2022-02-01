@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>You wouldn't download an IT-Sicherheitskennzeichen!</title>
+    <style>
+        html,
+        input {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 20px;
+            text-align: center;
+            margin: auto;
+        }
+        
+        input {
+            margin: 0.5em auto;
+        }
+        
+        input[type=text] {
+            display: block;
+            width: 25em;
+            max-width: 100%;
+            box-sizing: border-box;
+            padding: 0.5em;
+            text-align: left;
+        }
+        
+        svg {
+            width: 50%;
+            min-width: 25em;
+            height: auto;
+        }
+        
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://rawcdn.githack.com/davidshimjs/qrcodejs/04f46c6a0708418cb7b96fc563eacae0fbf77674/qrcode.min.js" integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU" crossorigin="anonymous"></script>
+    </heay>
+
+    <body>
+        <h1>IT-Sicherheitsgenerator</h1>
+        <svg id="e" width="470" height="237.5" viewBox="0 0 470 237.5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+      @font-face {
+        font-family:"BundesSansWeb";
+        src:url("https://rawcdn.githack.com/tech4germany/bmfsfj-partnerschaftliche-gleichstellung/c714d0b607e0f65442c9ed251f3e195814a70150/assets/fonts/bundessansweb-regular.ttf") format("woff2");
+        font-weight:400;
+        font-style:normal;
+        font-display:fallback
+      }
+      @font-face {
+        font-family:"BundesSansWeb";
+        src:url("https://rawcdn.githack.com/tech4germany/bmfsfj-partnerschaftliche-gleichstellung/c714d0b607e0f65442c9ed251f3e195814a70150/assets/fonts/bundessansweb-bold.ttf") format("woff2");
+        font-weight:700;
+        font-style:normal;
+        font-display:fallback
+      }
+    </style>
+    <rect id="bg" x="5" y="1.25" width="463.75" height="235.25" rx="20" ry="20" fill="#fff"/>
+    <g id="colors" fill="none" stroke-linecap="round" stroke-width="10">
+      <path id="a" d="m5 51.5v34" stroke="#000"/>
+      <path id="b" d="m5 102v34" stroke="#f00"/>
+      <path id="c" d="m5 152.5v34" stroke="#fc0"/>
+    </g>
+    <image id="qr" x="307" y="82" width="140" image-rendering="pixelated"/>
+    <g font-family="BundesSansWeb">
+      <text id="ti" x="30" y="45" font-size="37.5" font-weight="bold">IT-Sicherheitskennzeichen</text>
+      <text id="st" x="30" y="66" font-size="19.4">Bundesamt für Sicherheit in der Informationstechnik</text>
+      <text id="ti1" x="30" y="96"  font-size="19.5" font-weight="bold">Der Hersteller versichert:</text>
+      <text x="30" y="119"  font-size="19.5" style="line-height:1.19">
+        <tspan id="tis1" x="30" y="119">Das Produkt entspricht den</tspan>
+        <tspan id="tis2" x="30" y="142">Anforderungen des BSI.</tspan>
+      </text>
+      <text id="ti2" x="30" y="177"  font-size="19.5" font-weight="bold">Das BSI informiert:</text>
+      <text x="30" y="200"  font-size="19.5" style="line-height:1.19">
+        <tspan id="tis3" x="30" y="200">Aktuelles zum Produkt</tspan>
+        <tspan id="tis4" x="30" y="223">bsi.bund.de/dok/sik-01337</tspan>
+      </text>
+    </g>
+    <path id="aa" d="m5 38.25v-17c0-11.08 8.92-20 20-20h423.75c11.08 0 20 8.92 20 20v195c0 11.08-8.92 20-20 20h-423.75c-11.08 0-20-8.92-20-20v-17" fill="none" stroke="#bfbfbf" stroke-linecap="round" stroke-width="2.5"/>
+  </svg>
+        <div>
+            <input type="color" value="#000000" name="a">
+            <input type="color" value="#ff0000" name="b">
+            <input type="color" value="#ffcc00" name="c">
+        </div>
+
+
+        <input type="text" class="bold" value="IT-Sicherheitskennzeichen" name="ti">
+        <input type="text" value="Bundesamt für Sicherheit in der Informationstechnik" name="st">
+        <input type="text" class="bold" value="Der Hersteller versichert:" name="ti1">
+        <input type="text" value="Das Produkt entspricht den" name="tis1">
+        <input type="text" value="Anforderungen des BSI." name="tis2">
+        <input type="text" class="bold" value="Das BSI informiert:" name="ti2">
+        <input type="text" value="Aktuelles zum Produkt" name="tis3">
+        <input type="text" value="bsi.bund.de/dok/sik-01337" name="tis4">
+
+        <input type="text" value="https://bsi.bund.de/dok/sik-01337" name="qr">
+
+        <input type="button" value="Laden Sie hinunter!" id="download">
+        <script>
+            let qrimg = document.getElementById('qr');
+            let target = document.createElement('div');
+
+            function setQR(text) {
+                let code = new QRCode(target, {
+                    text: text,
+                    width: 512,
+                    height: 512
+                });
+                let interval;
+                let setQR = function() {
+                    if (target.lastElementChild.src) {
+                        qrimg.setAttribute('href', target.lastElementChild.src);
+                        clearInterval(interval);
+                    }
+                }
+                interval = setInterval(setQR, 10);
+            }
+
+            let inputs = document.getElementsByTagName('input');
+            for (let i = 0; i < inputs.length; i++) {
+                const input = inputs[i];
+                input.onchange = function() {
+                    if (input.type === 'color') {
+                        console.log(input)
+                        document.getElementById(input.name).setAttribute('stroke', this.value);
+                    } else if (input.name === 'qr') {
+                        setQR(this.value);
+                    } else {
+                        document.getElementById(input.name).textContent = this.value;
+                    }
+                }
+            }
+
+            document.getElementById('download').onclick = function() {
+                var svg = document.querySelector('svg');
+                let link = document.createElement('a');
+                link.download = 'sicherheit.svg';
+                let blob = new Blob([svg.outerHTML], {
+                    type: 'image/svg+xml'
+                });
+                link.href = URL.createObjectURL(blob);
+                link.click();
+            }
+
+            setQR('https://bsi.bund.de/dok/sik-01337')
+        </script>
+
+    </body>
+    </html
